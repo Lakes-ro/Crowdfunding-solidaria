@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>15 Anos da Ludmila — Vaquinha</title>
+<meta name="description" content="Faça parte da festa de 15 anos da Ludmila. Contribua via Pix em segundos." />
+
+<!-- Fontes: Playfair Display (convite/display) + Manrope (utilitária/formulário) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- FAIXA DE CONFIRMAÇÃO (exibida quando o convidado retorna do   -->
+  <!-- checkout da InfinitePay via redirect_url)                     -->
+  <!-- ============================================================ -->
+  <div id="return-banner" class="return-banner" hidden role="status" aria-live="polite">
+    <div class="return-banner__seal">✓</div>
+    <div class="return-banner__text">
+      <strong id="return-banner-title">Contribuição recebida!</strong>
+      <span>Obrigada por fazer parte da festa da Ludmila.</span>
+    </div>
+    <button type="button" class="return-banner__close" id="closeBannerBtn" aria-label="Fechar aviso">×</button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- HERO — "capa do convite"                                      -->
+  <!-- ============================================================ -->
+  <header class="hero">
+    <div class="hero__frame">
+      <div class="hero__ornament hero__ornament--top" aria-hidden="true"></div>
+
+      <p class="hero__eyebrow">Você está convidado a fazer parte de</p>
+
+      <div class="hero__portrait" aria-hidden="true">
+        <div class="hero__portrait-ring"></div>
+      </div>
+
+      <h1 class="hero__title">Ludmila<span class="hero__title-sub">completa</span>15 anos</h1>
+
+      <p class="hero__meta">Interior do Rio de Janeiro · Uma festa para guardar na memória</p>
+
+      <p class="hero__lede">
+        Este ano vamos celebrar com quem a Ludmila mais ama por perto.
+        Cada contribuição, de qualquer tamanho, ajuda a transformar esse
+        sonho de 15 anos em festa de verdade — direto via Pix, sem enrolação.
+      </p>
+
+      <a href="#contribuir" class="hero__cta">
+        Contribuir agora
+        <span class="hero__cta-arrow" aria-hidden="true">↓</span>
+      </a>
+
+      <div class="hero__ornament hero__ornament--bottom" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================ -->
+    <!-- PROGRESSO — selo circular + faixa numérica                    -->
+    <!-- ============================================================ -->
+    <section class="progress-section" aria-labelledby="progress-heading">
+      <div class="progress-card">
+        <h2 id="progress-heading" class="progress-card__heading">Como está a arrecadação</h2>
+
+        <div class="seal" role="img" aria-label="Progresso da arrecadação">
+          <svg class="seal__ring" viewBox="0 0 200 200" aria-hidden="true">
+            <circle class="seal__ring-track" cx="100" cy="100" r="88" />
+            <circle class="seal__ring-fill" id="sealRingFill" cx="100" cy="100" r="88" />
+          </svg>
+          <div class="seal__center">
+            <span class="seal__percent" id="percentLabel">0%</span>
+            <span class="seal__caption">da meta</span>
+          </div>
+        </div>
+
+        <div class="progress-numbers">
+          <div class="progress-numbers__raised">
+            <span class="progress-numbers__label">Arrecadado</span>
+            <span class="progress-numbers__value" id="raisedAmount">R$ 0,00</span>
+          </div>
+          <div class="progress-numbers__divider" aria-hidden="true"></div>
+          <div class="progress-numbers__goal">
+            <span class="progress-numbers__label">Meta</span>
+            <span class="progress-numbers__value" id="goalAmount">R$ 0,00</span>
+          </div>
+        </div>
+
+        <div class="ribbon-bar" aria-hidden="true">
+          <div class="ribbon-bar__fill" id="ribbonBarFill"></div>
+        </div>
+
+        <p class="progress-card__status" id="liveStatus">Acompanhando em tempo real…</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FORMULÁRIO DE CONTRIBUIÇÃO                                    -->
+    <!-- ============================================================ -->
+    <section class="donate-section" id="contribuir" aria-labelledby="donate-heading">
+      <div class="donate-card">
+
+        <!-- Estado: FORMULÁRIO -->
+        <form id="donateForm" class="donate-form" novalidate>
+          <p class="donate-card__eyebrow">Faça parte</p>
+          <h2 id="donate-heading" class="donate-card__heading">Deixe seu carinho para a Ludmila</h2>
+
+          <div class="field">
+            <label for="donorName">Seu nome</label>
+            <input type="text" id="donorName" name="donorName" placeholder="Como você quer ser chamado(a)" autocomplete="name" required maxlength="120" />
+          </div>
+
+          <div class="field">
+            <label for="donorWhatsapp">WhatsApp <span class="field__optional">(opcional)</span></label>
+            <input type="tel" id="donorWhatsapp" name="donorWhatsapp" placeholder="(21) 9XXXX-XXXX" autocomplete="tel" inputmode="numeric" maxlength="16" />
+          </div>
+
+          <div class="field">
+            <label for="donorMessage">Mensagem de carinho <span class="field__optional">(opcional)</span></label>
+            <textarea id="donorMessage" name="donorMessage" rows="3" maxlength="500" placeholder="Deixe um recado para a aniversariante…"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="donationAmount">Valor da contribuição</label>
+
+            <div class="amount-shortcuts" role="group" aria-label="Valores rápidos">
+              <button type="button" class="amount-shortcut" data-amount="50">R$ 50</button>
+              <button type="button" class="amount-shortcut" data-amount="100">R$ 100</button>
+              <button type="button" class="amount-shortcut" data-amount="200">R$ 200</button>
+            </div>
+
+            <div class="amount-input">
+              <span class="amount-input__prefix">R$</span>
+              <input type="text" id="donationAmount" name="donationAmount" inputmode="decimal" placeholder="0,00" required />
+            </div>
+          </div>
+
+          <p class="form-error" id="formError" role="alert" hidden></p>
+
+          <button type="submit" class="donate-submit" id="donateSubmitBtn">
+            <span class="donate-submit__label">Contribuir via Pix</span>
+          </button>
+
+          <p class="donate-form__footnote">
+            Você será direcionado ao checkout seguro da InfinitePay para concluir o pagamento via Pix ou cartão.
+          </p>
+        </form>
+
+        <!-- Estado: LOADING -->
+        <div class="donate-loading" id="donateLoading" hidden>
+          <div class="donate-loading__ring" aria-hidden="true"></div>
+          <p>Preparando seu checkout seguro…</p>
+        </div>
+
+        <!-- Estado: ERRO -->
+        <div class="donate-failed" id="donateFailed" hidden>
+          <div class="donate-failed__icon" aria-hidden="true">!</div>
+          <p id="donateFailedMessage">Não foi possível iniciar sua contribuição. Tente novamente.</p>
+          <button type="button" class="donate-retry" id="donateRetryBtn">Tentar novamente</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__ornament" aria-hidden="true"></div>
+    <p>Com carinho, a família da Ludmila agradece a sua presença — de perto ou de longe.</p>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- DEPENDÊNCIAS VIA CDN                                          -->
+  <!-- ============================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
