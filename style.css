@@ -79,6 +79,14 @@ img {
   animation: slideDown var(--transition-smooth) both;
 }
 
+/* CRÍTICO: o atributo [hidden] precisa vencer o display:flex acima.
+   Sem esta regra, a faixa aparece mesmo com o atributo hidden presente,
+   porque CSS de autor sempre tem prioridade sobre o estilo nativo do
+   navegador para [hidden], independente de especificidade. */
+.return-banner[hidden] {
+  display: none;
+}
+
 @keyframes slideDown {
   from { transform: translateY(-100%); }
   to { transform: translateY(0); }
